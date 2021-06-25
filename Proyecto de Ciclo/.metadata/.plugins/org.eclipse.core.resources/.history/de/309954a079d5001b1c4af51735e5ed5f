@@ -1,0 +1,230 @@
+package interfases;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import arreglos.ArregloAlumno;
+import arreglos.ArregloCurso;
+import arreglos.ArregloMatricula;
+import clases.Alumno;
+import clases.Curso;
+import clases.Matricula;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+
+public class _06ConsultaAlumnos extends JDialog implements ActionListener {
+	
+	private static final long serialVersionUID = 1L;
+	private JTextField txtCodigo;
+	private JScrollPane scp;
+	private JTextArea txtS;
+	private JButton btnConsultar;
+	private JLabel lblCodigoDeAlumno;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					_06ConsultaAlumnos dialog = new _06ConsultaAlumnos();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public _06ConsultaAlumnos() {
+		getContentPane().setBackground(SystemColor.inactiveCaption);
+		setTitle("Consulta | Alumnos");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(129, 9, 125, 20);
+		getContentPane().add(txtCodigo);
+		txtCodigo.setColumns(10);
+		
+		scp = new JScrollPane();
+		scp.setBounds(10, 130, 414, 120);
+		getContentPane().add(scp);
+		
+		txtS = new JTextArea();
+		scp.setViewportView(txtS);
+		
+		btnConsultar = new JButton("CONSULTAR");
+		btnConsultar.setBackground(Color.LIGHT_GRAY);
+		btnConsultar.addActionListener(this);
+		btnConsultar.setForeground(Color.BLUE);
+		btnConsultar.setBounds(315, 8, 109, 20);
+		getContentPane().add(btnConsultar);
+		
+		lblCodigoDeAlumno = new JLabel("Codigo de Alumno:");
+		lblCodigoDeAlumno.setBounds(10, 10, 109, 16);
+		getContentPane().add(lblCodigoDeAlumno);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(this);
+		btnNewButton.setBounds(325, 38, 85, 21);
+		getContentPane().add(btnNewButton);
+	}
+	
+	
+	
+	
+	//DCLARACION G.
+	
+		ArregloAlumno aa = new ArregloAlumno();
+		ArregloCurso ac = new ArregloCurso();
+		ArregloMatricula am = new ArregloMatricula();
+		private JButton btnNewButton;
+		
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnNewButton) {
+			actionPerformedBtnNewButton(arg0);
+		}
+		if (arg0.getSource() == btnConsultar) {
+			actionPerformedBtnConsultar(arg0);
+		}
+	}
+	
+	//BOTON COSULTAR
+
+	protected void actionPerformedBtnConsultar(ActionEvent arg0) {
+	
+	try{
+			int codigoAlumno = leerCodigoAlumno();
+			Alumno a = aa.buscarAlumno(codigoAlumno);
+			if(a != null){
+				txtS.setText("");
+				listar();
+			}
+			else
+				error("POR FAVOR INGRESE UN CODIGO VAIDO", txtCodigo);
+		
+	}catch (Exception e){
+		mensaje("POR FAVOR INGRESE UN CODIGO");
+	}
+	
+	
+	}
+	
+	
+	    //METODOS VOID SIN PARAMETROS
+	
+	    void imprimir(){
+		imprimir("");
+	    }
+	
+	    void listar(){
+			Alumno a = aa.buscarAlumno(leerCodigoAlumno());
+			imprimir("Alumno               : " + a.getCodAlumno());
+			imprimir("Nombres              : " + a.getNombres());
+			imprimir("Apellidos            : " + a.getApellidos());
+			imprimir("DNI                  : " + a.getDNI());
+			imprimir("Edad                 : " + a.getEdad());
+			imprimir("Celular              : " + a.getCelular());
+			imprimir("Estado               : " + a.getEstado());
+			Matricula m = am.buscarAlumno(leerCodigoAlumno());
+			Curso c = ac.buscarCurso(m.getCodCurso());
+			imprimir("Asignatura           : " + c.getAsignatura());
+			imprimir("Ciclo                : " + c.getCiclo());
+			imprimir("Cantidad de créditos : " + c.getCreditos());
+			imprimir("Cantidad de horas    : " + c.getHoras());
+		}
+	    
+	    
+	    
+	    
+	  //METODOS VOID CON PARAMETROS
+	    
+		void imprimir(String s){
+			txtS.append(s + "\n"); 
+		}
+		
+		void mensaje(String s) {
+			JOptionPane.showMessageDialog(this, s, "ERROR", 0);
+		}
+		
+		void error(String s, JTextField txt) {
+			mensaje(s);
+			txt.setText("");
+			txt.requestFocus();
+		}
+		
+		//METODOS DE RETORNO SIN PARAMETRO
+		
+		int leerCodigoAlumno(){
+			return Integer.parseInt(txtCodigo.getText().trim());
+		}
+		
+		//VALIDAR CARACTERES
+		
+		public void soloNumeros(JTextField a){
+			a.addKeyListener(new KeyAdapter(){
+				public void keyTyped(KeyEvent e){
+					char c=e.getKeyChar();
+					if(!Character.isDigit(c)){
+						e.consume();
+					}
+				}
+			});
+		}
+		
+		public void keyPressed(KeyEvent arg0) {
+		}
+		
+		public void keyReleased(KeyEvent arg0) {
+		}
+		
+		public void keyTyped(KeyEvent arg0) {
+			if (arg0.getSource() == txtCodigo) {
+				keyTypedTxtCodigo(arg0);
+			}
+		}
+		
+		protected void keyTypedTxtCodigo(KeyEvent arg0) {
+			if(txtCodigo.getText().length() >= 9){
+				arg0.consume();
+			}
+		}
+		
+		
+	// LIMPIO
+	protected void actionPerformedBtnNewButton(ActionEvent arg0) {
+		try {
+			int codigoAlumno = leerCodigoAlumno();
+			Alumno a = aa.buscarAlumno(codigoAlumno);
+			if(a != null){
+				txtS.setText("");
+				listar();
+			} else {
+				error("POR FAVOR INGRESE UN CODIGO VAIDO", txtCodigo);				
+			}	
+		} catch (Exception e) {
+		mensaje("POR FAVOR INGRESE UN CODIGO");
+		}
+	}
+	}
+}

@@ -1,0 +1,8 @@
+package libreria;
+
+public class Libreria {
+	// Atributos estáticos
+	public static String[] estadoAlumno = {
+			"Registrado", "Matriculado", "Retirado"
+	}
+}

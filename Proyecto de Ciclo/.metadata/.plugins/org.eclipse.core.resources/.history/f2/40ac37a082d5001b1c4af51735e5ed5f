@@ -1,0 +1,173 @@
+package interfases;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import arreglos.ArregloAlumno;
+import arreglos.ArregloCurso;
+import arreglos.ArregloMatricula;
+import arreglos.ArregloRetiro;
+import clases.Alumno;
+import clases.Curso;
+import clases.Matricula;
+import clases.Retiro;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+
+public class _09ConsultaRetiros extends JDialog implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JTextField txtRetiro;
+	private JScrollPane scp;
+	private JTextArea txtS;
+	private JButton btnConsultar;
+	private JLabel lblCodigoDeAlumno;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					_09ConsultaRetiros dialog = new _09ConsultaRetiros();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public _09ConsultaRetiros() {
+		setTitle("Consultar/Alumnos/Curso");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		txtRetiro = new JTextField();
+		txtRetiro.setBounds(132, 43, 125, 20);
+		getContentPane().add(txtRetiro);
+		txtRetiro.setColumns(10);
+		
+		scp = new JScrollPane();
+		scp.setBounds(10, 117, 414, 133);
+		getContentPane().add(scp);
+		
+		txtS = new JTextArea();
+		scp.setViewportView(txtS);
+		
+		btnConsultar = new JButton("CONSULTAR");
+		btnConsultar.addActionListener(this);
+		btnConsultar.setForeground(Color.BLUE);
+		btnConsultar.setBounds(288, 33, 117, 41);
+		getContentPane().add(btnConsultar);
+		
+		lblCodigoDeAlumno = new JLabel("Numero de Retiro");
+		lblCodigoDeAlumno.setBounds(12, 45, 109, 16);
+		getContentPane().add(lblCodigoDeAlumno);
+	}
+	
+	//DECLARACION G.
+	
+		ArregloRetiro ar = new ArregloRetiro();
+		ArregloMatricula am = new ArregloMatricula();
+		ArregloAlumno aa = new ArregloAlumno();
+		ArregloCurso ac = new ArregloCurso();
+		
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnConsultar) {
+			actionPerformedBtnConsultar(arg0);
+		}
+	}
+	
+	//BOTON COSULTAR
+
+
+	protected void actionPerformedBtnConsultar(ActionEvent arg0) {
+	
+		try {
+			
+		
+		
+		int numeroRetiro = leerNumeroRetiro();
+		Retiro r = ar.buscarRetiro(numeroRetiro);
+		if(r != null){
+			txtS.setText("");
+			listar();
+		}
+		else
+			error("POR FAVOR INGRESE UN CODIGO VAILDO", txtRetiro);
+	
+		}catch (Exception e){
+			mensaje("POR FAVOR INGRESE UN 	NUMERO");
+		}
+		
+		}
+	
+	
+	// Métodos sin valor de retorno
+	void listar() {
+		Retiro r = ar.buscarRetiro(leerNumeroRetiro());
+		Matricula m = am.buscarMatricula(r.getNumMatricula());
+		Alumno a = aa.buscarAlumno(m.getCodAlumno());
+		Curso c = ac.buscarCurso(m.getCodCurso());
+
+		imprimir("Número de retiro     : " + r.getNumRetiro());
+		imprimir("Número de matrícula  : " + r.getNumMatricula());
+		imprimir();
+		imprimir("Alumno               : " + a.getCodAlumno());
+		imprimir("Nombres              : " + a.getNombres());
+		imprimir("Apellidos            : " + a.getApellidos());
+		imprimir("DNI                  : " + a.getDNI());
+		imprimir("Edad                 : " + a.getEdad());
+		imprimir("Celular              : " + a.getCelular());
+		imprimir();
+		imprimir("Curso                : " + c.getCodCurso());
+		imprimir("Asignatura           : " + c.getAsignatura());
+		imprimir("Ciclo                : " + c.getCiclo());
+		imprimir("Cantidad de créditos : " + c.getCreditos());
+		imprimir("Cantidad de horas    : " + c.getHoras());
+	}
+	void imprimir(){
+		imprimir("");
+	}
+	void imprimir(String s) {
+		txtS.append(s + "\n");
+	}
+	void mensaje(String s) {
+		JOptionPane.showMessageDialog(this, s, "Alerta", 1);
+	}
+		
+	// Métodos con valor de retorno	
+	int leerNumeroRetiro() {
+		return Integer.parseInt(txtRetiro.getText().trim());
+	}
+		
+	// Validación de caracteres
+	public void soloNumeros(JTextField a) {
+		a.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
+		});
+	}
+}

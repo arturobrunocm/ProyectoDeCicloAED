@@ -1,0 +1,16 @@
+1620417916120	Delete element
+1620418555393	Delete element
+1620418603123	Rename type 'MenuPrincipal'
+1620418667993	Rename type 'MantenimientoAlumno'
+1620418690864	Rename type 'MantenimientoCurso'
+1620418852692	Rename type 'RegistroMatricula'
+1620418873526	Rename type 'RegistroRetiro'
+1620418964534	Rename type 'ConsultaAlumnosCursos'
+1620418987529	Rename type 'ConsultaMatriculasRetiros'
+1620419028083	Rename type 'ReporteAlumnosConMatriculaPendiente'
+1620419053506	Rename type 'ReporteAlumnosMatriculadosCurso'
+1620419065732	Rename type 'ReporteAlumnosMatriculaVigente'
+1620419665654	Rename package 'interfases'
+1620419746946	Move compilation unit
+1620419825703	Move compilation unit
+1620420308529	Delete element

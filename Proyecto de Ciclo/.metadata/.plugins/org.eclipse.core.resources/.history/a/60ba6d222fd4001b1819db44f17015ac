@@ -1,0 +1,90 @@
+package arreglos;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import clases.Curso;
+
+public class ArregloCurso {	
+	// Atributo privado
+	private ArrayList<Curso> curso;
+	
+	// Constructor
+	public ArregloCurso() {
+		curso = new ArrayList<Curso>();
+	}
+	
+	// Métodos públicos
+	public void adicionar(Curso x) {
+		curso.add(x);
+		grabarCursos();
+	}
+	public int tamaño() {
+		return curso.size();
+	}	
+	public Curso obtener(int i) {
+		return curso.get(i);
+	}
+	public void eliminar(Curso x){
+		curso.remove(x);
+		grabarCursos();
+	}
+	public void actualizarArchivo() {
+		grabarCursos();
+	}
+	
+	// Métodos públicos complementarios
+	public Curso buscar(int codigo) {
+		for (int i = 0; i < tamaño(); i++)
+			if (obtener(i).getCodCurso() == codigo)
+				return obtener(i);
+		return null;
+	}
+	
+	// Manejo de archivos de texto
+	private void grabarCursos() {
+		try {
+			PrintWriter pw;
+			String linea;
+			Curso c;
+			pw = new PrintWriter(new FileWriter("alumnos.txt"));
+			for (int i = 0; i < tamaño(); i++) {
+				c = obtener(i);
+				linea = c.getCodCurso() + ";" +
+						c.getAsignatura() + ";" +
+						c.getCiclo() + ";" +
+						c.getCreditos() + ";" +
+						c.getHoras();
+				pw.println(linea);
+			}
+			pw.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	private void cargarAlumnos() {
+		try {
+			BufferedReader br;
+			String linea;
+			String[] s;
+			int codCurso, ciclo, creditos, horas;
+			String asignatura;
+			br = new BufferedReader(new FileReader("alumnos.txt"));
+			while ((linea = br.readLine()) != null) {
+				s = linea.split(";");
+				codCurso = Integer.parseInt(s[0].trim());
+				asignatura = s[1].trim();
+				ciclo = Integer.parseInt(s[2].trim());
+				creditos = Integer.parseInt(s[3].trim());
+				horas = Integer.parseInt(s[4].trim());
+
+				adicionar(new Curso(codCurso, asignatura, ciclo, creditos, horas));
+			}
+			br.close();			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+}

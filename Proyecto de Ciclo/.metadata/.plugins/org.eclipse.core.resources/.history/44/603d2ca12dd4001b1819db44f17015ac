@@ -1,0 +1,36 @@
+package arreglos;
+
+import java.util.ArrayList;
+import clases.Curso;
+
+public class ArregloCurso {	
+	// Atributo privado
+	private ArrayList<Curso> curso;
+	
+	// Constructor
+	public ArregloCurso() {
+		curso = new ArrayList<Curso>();
+	}
+	
+	// Métodos públicos
+	public void adicionar(Curso x) {
+		curso.add(x);
+	}
+	public int tamaño() {
+		return curso.size();
+	}	
+	public Curso obtener(int i) {
+		return curso.get(i);
+	}
+	public void eliminar(Curso x){
+		curso.remove(x);
+	}
+	
+	// Métodos públicos complementarios
+	public Curso buscar(int codigo) {
+		for (int i = 0; i < tamaño(); i++)
+			if (obtener(i).getCodCurso() == codigo)
+				return obtener(i);
+		return null;
+	}
+}

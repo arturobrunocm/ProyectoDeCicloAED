@@ -1,0 +1,36 @@
+package arreglos;
+
+import java.util.ArrayList;
+import clases.Retiro;
+
+public class ArregloRetiro {
+	// Atributo privado
+	private ArrayList<Retiro> retiro;
+	
+	// Constructor
+	public ArregloRetiro() {
+		retiro = new ArrayList<Retiro>();
+	}
+	
+	// Métodos públicos básicos
+	public void adicionar(Retiro x) {
+		retiro.add(x);
+	}
+	public int tamaño() {
+		return retiro.size();
+	}	
+	public Retiro obtener(int i) {
+		return retiro.get(i);
+	}
+	public void eliminar(Retiro x){
+		retiro.remove(x);
+	}
+		
+	// Métodos públicos complementarios
+	public Retiro buscar(int numRetiro) {
+		for (int i = 0; i < tamaño(); i++)
+			if (obtener(i).getNumRetiro() == numRetiro)
+				return obtener(i);
+		return null;
+	}
+}

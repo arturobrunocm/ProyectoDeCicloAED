@@ -1,0 +1,7 @@
+202010001;Arturo Bruno;Contreras Montoya;75756454;25;964936467;0
+202010002;Bryan Alexander;Quintana Bonilla;70308527;20;940123075;1
+202010003;Santiago Alexander;Bonilla Acuña;73227197;19;970310434;0
+202010004;Abraham;Ramirez Espino;75647589;20;915253936;1
+202010005;Magaly Francisca;Zavala Ibañez;75645364;31;968576890;1
+202010006;Alex Jordy;Silva Mogollon;75645675;27;998374675;2
+202010007;Anderson Esteban;Cisneros Miñan;88574634;26;993847757;2

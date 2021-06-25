@@ -1,0 +1,43 @@
+package arreglos;
+
+import java.util.ArrayList;
+import clases.Matricula;
+
+public class ArregloMatricula {
+	// Atributo privado
+	private ArrayList<Matricula> matricula;
+	
+	// Constructor
+	public ArregloMatricula() {
+		matricula = new ArrayList<Matricula>();
+	}
+	
+	// Métodos públicos básicos
+	public void adicionar(Matricula x) {
+		matricula.add(x);
+	}
+	public int tamaño() {
+		return matricula.size();
+	}	
+	public Matricula obtener(int i) {
+		return matricula.get(i);
+	}
+	public void eliminar(Matricula x){
+		matricula.remove(x);
+	}
+	
+	// Métodos públicos complementarios
+	public Matricula buscar(int numMatricula) {
+		for (int i = 0; i < tamaño(); i++)
+			if (obtener(i).getNumMatricula() == numMatricula)
+				return obtener(i);
+		return null;
+	}
+	public int numeroCorrelativo() {
+		if (tamaño() == 0) {
+			return 100001;
+		} else {
+			return obtener(tamaño() - 1).getNumMatricula() + 1;
+		}
+	}
+}

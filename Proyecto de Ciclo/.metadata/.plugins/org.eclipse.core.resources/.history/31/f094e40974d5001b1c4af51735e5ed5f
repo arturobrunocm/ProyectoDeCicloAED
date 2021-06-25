@@ -1,0 +1,56 @@
+package interfases;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import java.awt.TextArea;
+import javax.swing.JTextArea;
+
+public class _08ReporteAlumnosMatriculaPendiente extends JDialog {
+	private JScrollPane scp;
+	private JTextArea txtS;
+	private JButton btnConsultar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					_08ReporteAlumnosMatriculaPendiente dialog = new _08ReporteAlumnosMatriculaPendiente();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public _08ReporteAlumnosMatriculaPendiente() {
+		setTitle("Reporte/Matricula Pendiente");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		scp = new JScrollPane();
+		scp.setBounds(10, 39, 414, 211);
+		getContentPane().add(scp);
+		
+		txtS = new JTextArea();
+		scp.setViewportView(txtS);
+		
+		btnConsultar = new JButton("Consultar");
+		btnConsultar.setBounds(161, 11, 89, 23);
+		getContentPane().add(btnConsultar);
+	}
+}

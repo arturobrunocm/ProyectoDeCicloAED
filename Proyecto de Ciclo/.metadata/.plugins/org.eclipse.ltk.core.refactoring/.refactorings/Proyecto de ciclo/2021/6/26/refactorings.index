@@ -1,0 +1,27 @@
+1624452563849	Delete element
+1624452612398	Delete element
+1624453708607	Move method
+1624453750176	Move method
+1624454014218	Move method
+1624454020220	Move method
+1624454022897	Move method
+1624454031327	Move method
+1624454212244	Move method
+1624454439746	Move method
+1624454443413	Move method
+1624454452759	Move method
+1624560209048	Rename local variable 'e'
+1624565610626	Rename method 'buscar'
+1624565963267	Rename method 'buscar'
+1624565991946	Rename method 'buscar'
+1624566174799	Rename local variable 'x'
+1624582596618	Rename method 'editarFila'
+1624582613100	Rename method 'editarFila'
+1624582629653	Rename method 'editarFila'
+1624582662209	Rename method 'editarFila'
+1624587768258	Rename method 'setNunRetiro'
+1624598467602	Rename type '_06ConsultaAlumnosCursos'
+1624598480938	Rename type '_07ConsultaMatriculasRetiros'
+1624598505775	Rename type '_08ReporteAlumnosMatriculaPendiente'
+1624598515565	Rename type '_09ReporteAlumnosMatriculaVigente'
+1624598533746	Rename type '_10ReporteAlumnosMatriculadosCurso'

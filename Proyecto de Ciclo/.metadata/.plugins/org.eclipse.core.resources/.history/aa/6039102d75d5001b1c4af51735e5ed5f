@@ -1,0 +1,69 @@
+package interfases;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class _07ConsultaMatriculasRetiros extends JDialog {
+	private JTextField txtMatricula;
+	private JButton btnRetiro;
+	private JButton btnMatricula;
+	private JTextField txtRetiro;
+	private JScrollPane scp;
+	private JTextArea txtS;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					_07ConsultaCursos dialog = new _07ConsultaCursos();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public _07ConsultaMatriculasRetiros() {
+		setTitle("Consultar/Matriculas/Retiros");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		txtMatricula = new JTextField();
+		txtMatricula.setBounds(23, 36, 114, 20);
+		getContentPane().add(txtMatricula);
+		txtMatricula.setColumns(10);
+		
+		btnRetiro = new JButton("Retiro");
+		btnRetiro.setBounds(144, 67, 89, 23);
+		getContentPane().add(btnRetiro);
+		
+		btnMatricula = new JButton("Matricula");
+		btnMatricula.setBounds(144, 35, 89, 23);
+		getContentPane().add(btnMatricula);
+		
+		txtRetiro = new JTextField();
+		txtRetiro.setBounds(23, 67, 114, 20);
+		getContentPane().add(txtRetiro);
+		txtRetiro.setColumns(10);
+		
+		scp = new JScrollPane();
+		scp.setBounds(10, 114, 414, 136);
+		getContentPane().add(scp);
+		
+		txtS = new JTextArea();
+		scp.setViewportView(txtS);
+	}
+}

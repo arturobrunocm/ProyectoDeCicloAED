@@ -1,0 +1,69 @@
+package interfases;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class _06ConsultaAlumnosCursos extends JDialog {
+	private JTextField txtAlumno;
+	private JButton btnMostrar;
+	private JScrollPane scp;
+	private JTextArea txtS;
+	private JButton btnNewButton;
+	private JTextField txtCurso;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					_06ConsultaAlumnos dialog = new _06ConsultaAlumnos();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public _06ConsultaAlumnosCursos() {
+		setTitle("Consultar/Alumnos/Curso");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		txtAlumno = new JTextField();
+		txtAlumno.setBounds(10, 23, 125, 20);
+		getContentPane().add(txtAlumno);
+		txtAlumno.setColumns(10);
+		
+		btnMostrar = new JButton("Cod Curso");
+		btnMostrar.setBounds(145, 56, 102, 23);
+		getContentPane().add(btnMostrar);
+		
+		scp = new JScrollPane();
+		scp.setBounds(10, 117, 414, 133);
+		getContentPane().add(scp);
+		
+		txtS = new JTextArea();
+		scp.setViewportView(txtS);
+		
+		btnNewButton = new JButton("Cod Alumno");
+		btnNewButton.setBounds(145, 22, 102, 23);
+		getContentPane().add(btnNewButton);
+		
+		txtCurso = new JTextField();
+		txtCurso.setBounds(10, 57, 125, 20);
+		getContentPane().add(txtCurso);
+		txtCurso.setColumns(10);
+	}
+}

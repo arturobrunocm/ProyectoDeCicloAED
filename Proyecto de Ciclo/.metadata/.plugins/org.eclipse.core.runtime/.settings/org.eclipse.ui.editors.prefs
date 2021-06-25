@@ -1,0 +1,12 @@
+AbstractTextEditor.Color.SelectionBackground=0,120,215
+AbstractTextEditor.Color.SelectionForeground=255,255,255
+eclipse.preferences.version=1
+fullcoverage_stylePreferences=NONE
+fullcoverage_text=false
+hoverReplaceMode=2
+nocoverage_stylePreferences=NONE
+nocoverage_text=false
+overviewRuler_migration=migrated_3.1
+partialcoverage_stylePreferences=NONE
+partialcoverage_text=false
+spellingEnabled=false
